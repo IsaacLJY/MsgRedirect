@@ -7,6 +7,7 @@ import android.telephony.PhoneStateListener;
 import android.telephony.TelephonyManager;
 import android.widget.CompoundButton;
 import android.widget.Switch;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,8 +20,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         mSwitch = (Switch)findViewById(R.id.phone15673940851);
         mSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -48,4 +47,14 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(smsBroadcastReceiver!=null){
+            unregisterReceiver(smsBroadcastReceiver);
+        }
+        if(telephonyManager!=null && myPhoneStateListener!=null){
+            telephonyManager.listen(myPhoneStateListener, PhoneStateListener.LISTEN_NONE);
+        }
+    }
 }

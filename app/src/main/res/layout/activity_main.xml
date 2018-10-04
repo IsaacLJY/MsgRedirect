@@ -11,6 +11,7 @@
         android:layout_width="161dp"
         android:layout_height="35dp"
         android:text="15673940851"
+        android:checked="false"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="96dp" />
 
